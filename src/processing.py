@@ -8,11 +8,11 @@ inform_state = [
 ]
 
 
-def filter_by_state(inform_states: list[dict[str, Any]], state_id: str = "EXECUTED") -> list[dict[str, Any]]:
+def filter_by_state(inform_states: list[dict[str, Any]], states_id: str = "EXECUTED") -> list[dict[str, Any]]:
     """Функция фильтрации операций по ключу state"""
     list_stat = []
     for key in inform_states:
-        if key.get("state") == state_id:
+        if key.get("state") == states_id:
             list_stat.append(key)
     return list_stat
 
