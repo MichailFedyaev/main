@@ -2,6 +2,8 @@ import pytest
 
 from src.processing import inform_state
 
+from src.generators import transactions
+
 
 @pytest.fixture()
 def test_inform_state():
@@ -16,3 +18,8 @@ def test_inform_state1():
 @pytest.fixture()
 def test_data():
     return "2018-07-11T02:26:18.671407"
+
+
+@pytest.fixture()
+def test_transactions():
+    return transactions
