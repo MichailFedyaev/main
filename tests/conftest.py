@@ -6,6 +6,8 @@ from src.generators import transactions
 
 from src.utils import get_transactions_dictionary
 
+from typing import Any, Dict, List, Union
+
 
 @pytest.fixture()
 def test_inform_state():
@@ -27,26 +29,25 @@ def test_transactions():
     return transactions
 
 
-@pytest.fixture()
-def get_path():
-    return "D:/PycharmProject/main/data/operations.json"
-
-
-@pytest.fixture()
-def get_wrong_path():
-    return "Nothing"
-
-
-@pytest.fixture()
-def get_bad_file():
-    return '../data/wrong_operations.json'
-
-
-@pytest.fixture()
-def transaction():
-    return get_transactions_dictionary("D:/PycharmProject/main/data/operations.json")
-
-
-@pytest.fixture()
-def rub_transaction_number():
-    return 939719570
+@pytest.fixture
+def transactions() -> List[Dict[str, Any]]:
+    return [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "100000", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        },
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "100", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        },
+    ]

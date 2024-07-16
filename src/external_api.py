@@ -1,33 +1,37 @@
 import json
 import os
-from typing import Any
+from typing import Any, Dict
 
 import requests
 from dotenv import load_dotenv
+from requests import RequestException
 
 load_dotenv()
 
 api_key = os.getenv("API_KEY")
 
 
-def convert_to_rub(amount: float, currency: str) -> Any:
-    """Функция принимает значение в долларах или евро, обращается к API и возвращает конвертацию в рубли"""
-    url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
-    headers = {"apikey": api_key}
-    response = requests.get(url, headers=headers)
+def convert_to_rub(transaction: Dict[str, Any]) -> float:
+    """
+    Возвращает сумму транзакции (amount) в рублях.
 
-    if response.status_code == 200:
-        json_result = response.json()
-        rub_amount = json_result["result"]
-        return rub_amount
+    :param transaction: Транзакция.
+    :return: Сумма транзакции в рублях.
+    """
+    amount = float(transaction["operationAmount"]["amount"])
+    currency = transaction["operationAmount"]["currency"]["code"]
+
+    if currency == "RUB":
+        return amount
     else:
-        raise Exception(f"Failed to convert currency: {response.status_code}")
+        url = f"https://api.apilayer.com/exchangerates_data/convert?from={currency}&to=RUB&amount={amount}"
+        headers = {"apikey": api_key}
 
+        response = requests.get(url, headers=headers)
+        # Если запрос успешен, возвращается результат конвертации суммы
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("success") and "result" in data:
+                return float(data["result"])
 
-# Пример использования функций
-#if __name__ == "__main__":
-   # try:
-       # amount_in_rub = convert_to_rub(20, 'USD')
-       # print(amount_in_rub)
-   #except Exception as e:
-        #print(e)
+        raise ValueError(f"Failed to get the exchange rate for {currency} to RUB")

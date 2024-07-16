@@ -18,7 +18,6 @@
 - Функция сортировки по дате
 - Функция фильтрации в операциях по счетам
 - Функция для конвертации указанной валюты в рубли, с помощью api
-- Функция для возврата суммы транзакции в рублях
 - Функция для преобразования списка словарей с транзакциями
 - Генератор фильтрации указанной валюты
 - Генератор для описания каждой операции
@@ -36,22 +35,22 @@ Name                             Stmts   Miss  Cover
 ----------------------------------------------------
 src\__init__.py                      0      0   100%
 src\decorators.py                   32      5    84% 
-src\external_api.py                 16      1    94%
+src\external_api.py                 21      0   100%
 src\generators.py                   21      0   100%
 src\masks.py                        10      1    90%
 src\processing.py                   13      0   100%
 src\utils.py                        28      7    75%
 src\widget.py                       15      0   100%
 tests\__init__.py                    0      0   100%
-tests\conftest.py                   15      0   100%
+tests\conftest.py                   20      0   100%
 tests\test_decorators.py            50      5    90%
-tests\test_external_api.py           9      0   100%
+tests\test_external_api.py          37      0   100%
 tests\test_generators.py            20      0   100%
 tests\test_masks_and_widget.py      14      0   100%
 tests\test_processing.py             7      0   100%
-tests\test_utils.py                 10      0   100%
+tests\test_utils.py                 50      0   100%
 ----------------------------------------------------
-TOTAL                              276     19    93%
+TOTAL                              324     11    97%
 
 # Инструкция по установке
 Чтобы скачать репозиторий:
