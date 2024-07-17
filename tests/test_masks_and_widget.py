@@ -1,3 +1,5 @@
+from unittest.mock import Mock, patch
+
 import pytest
 
 from src.masks import mask_account, mask_card_number
@@ -31,3 +33,17 @@ def test_mask_account(string, expected_result):
 ])
 def test_mask_card_number(string, expected_result):
     assert mask_card_number(string) == expected_result
+
+
+@patch("src.masks.masks_logger")
+def test_get_mask_card_number_logs_info(mock_logger: Mock, card_number: str) -> None:
+    """Тестирует, что функция mask_card_number логирует корректное сообщение."""
+    assert mask_card_number("7000792289606361") == card_number
+    mock_logger.info.assert_called_once_with(f"Masked card number: {card_number}")
+
+
+@patch("src.masks.masks_logger")
+def test_get_mask_account_logs_info(mock_logger: Mock) -> None:
+    """Тестирует, что функция mask_account логирует корректное сообщение."""
+    assert mask_account("73654108430135874305") == "**4305"
+    mock_logger.info.assert_called_once_with("Masked account number: **4305")

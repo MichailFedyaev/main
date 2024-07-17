@@ -9,6 +9,11 @@ from src.utils import get_transactions_dictionary
 from typing import Any, Dict, List, Union
 
 
+@pytest.fixture
+def card_number() -> str:
+    return "7000 79** **** 6361"
+
+
 @pytest.fixture()
 def test_inform_state():
     return 'EXECUTED'
