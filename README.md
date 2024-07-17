@@ -19,11 +19,11 @@
 - Функция фильтрации в операциях по счетам
 - Функция для конвертации указанной валюты в рубли, с помощью api
 - Функция для преобразования списка словарей с транзакциями
+- Функция для настройки логера с указанным именем
 - Генератор фильтрации указанной валюты
 - Генератор для описания каждой операции
 - Генератор номера карт
 - Декоратор для логирования и вызова функции и ее результата в файл или на консоль
-- 
 
 ## Структура проекта
 Был добавлен pytest, для запуска тестов и проверки функций, генераторов, декоратора, а также pytest-cov, для анализа покрытия кода тестами
@@ -37,20 +37,21 @@ src\__init__.py                      0      0   100%
 src\decorators.py                   32      5    84% 
 src\external_api.py                 21      0   100%
 src\generators.py                   21      0   100%
-src\masks.py                        10      1    90%
+src\logger_setup.py                 22      6    73%
+src\masks.py                        14      1    93%
 src\processing.py                   13      0   100%
-src\utils.py                        28      7    75%
+src\utils.py                        20      0   100%
 src\widget.py                       15      0   100%
 tests\__init__.py                    0      0   100%
-tests\conftest.py                   20      0   100%
+tests\conftest.py                   23      0   100%
 tests\test_decorators.py            50      5    90%
 tests\test_external_api.py          37      0   100%
 tests\test_generators.py            20      0   100%
-tests\test_masks_and_widget.py      14      0   100%
+tests\test_masks_and_widget.py      23      0   100%
 tests\test_processing.py             7      0   100%
-tests\test_utils.py                 50      0   100%
+tests\test_utils.py                 69      0   100%
 ----------------------------------------------------
-TOTAL                              324     11    97%
+TOTAL                              387     17    96%
 
 # Инструкция по установке
 Чтобы скачать репозиторий:
