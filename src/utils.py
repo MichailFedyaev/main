@@ -26,9 +26,3 @@ def get_transactions_dictionary(file_path: str) -> List[Dict[str, Any]]:
     except (json.JSONDecodeError, IOError) as e:
         utils_logger.error(f"Error reading file {file_path}: {e}")
         return []
-
-
-#if __name__ == "__main__":
-    #В лог записывается что такого файла не существует)
-    #transact = get_transactions_dictionary("D:/PycharmProject/non-existent/data/operations.json")
-    #print(transact)

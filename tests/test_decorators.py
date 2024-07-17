@@ -50,8 +50,8 @@ def test_log_different_types_argument(capsys):
         my_function(1, "")
     except TypeError as e:
         captured = capsys.readouterr()
-        expected_error_message = "my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs:(1, ''), {}"
-        assert expected_error_message in captured.out
+        error_message = "my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs:(1, ''), {}"
+        assert error_message in captured.out
         assert str(e) == "unsupported operand type(s) for +: 'int' and 'str'"
 
 

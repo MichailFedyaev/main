@@ -4,9 +4,7 @@ from src.processing import inform_state
 
 from src.generators import transactions
 
-from src.utils import get_transactions_dictionary
-
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
 
 
 @pytest.fixture
@@ -35,7 +33,7 @@ def test_transactions():
 
 
 @pytest.fixture
-def transactions() -> List[Dict[str, Any]]:
+def transaction1() -> List[Dict[str, Any]]:
     return [
         {
             "id": 441945886,

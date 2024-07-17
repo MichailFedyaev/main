@@ -1,10 +1,8 @@
-import json
 import os
 from typing import Any, Dict
 
 import requests
 from dotenv import load_dotenv
-from requests import RequestException
 
 load_dotenv()
 
@@ -12,12 +10,7 @@ api_key = os.getenv("API_KEY")
 
 
 def convert_to_rub(transaction: Dict[str, Any]) -> float:
-    """
-    Возвращает сумму транзакции (amount) в рублях.
-
-    :param transaction: Транзакция.
-    :return: Сумма транзакции в рублях.
-    """
+    """Возвращает сумму транзакции (amount) в рублях."""
     amount = float(transaction["operationAmount"]["amount"])
     currency = transaction["operationAmount"]["currency"]["code"]
 

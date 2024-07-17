@@ -35,7 +35,7 @@ Name                             Stmts   Miss  Cover
 ----------------------------------------------------
 src\__init__.py                      0      0   100%
 src\decorators.py                   32      5    84% 
-src\external_api.py                 21      0   100%
+src\external_api.py                 19      0   100%
 src\generators.py                   21      0   100%
 src\logger_setup.py                 22      6    73%
 src\masks.py                        14      1    93%
@@ -43,15 +43,15 @@ src\processing.py                   13      0   100%
 src\utils.py                        20      0   100%
 src\widget.py                       15      0   100%
 tests\__init__.py                    0      0   100%
-tests\conftest.py                   23      0   100%
+tests\conftest.py                   22      0   100%
 tests\test_decorators.py            50      5    90%
 tests\test_external_api.py          37      0   100%
 tests\test_generators.py            20      0   100%
 tests\test_masks_and_widget.py      23      0   100%
-tests\test_processing.py             7      0   100%
+tests\test_processing.py             8      0   100%
 tests\test_utils.py                 69      0   100%
 ----------------------------------------------------
-TOTAL                              387     17    96%
+TOTAL                              385     17    96%
 
 # Инструкция по установке
 Чтобы скачать репозиторий:

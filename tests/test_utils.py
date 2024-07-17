@@ -4,10 +4,10 @@ from unittest.mock import mock_open, patch, Mock
 from src.utils import get_transactions_dictionary
 
 
-def test_get_transactions_dictionary_valid_file(transactions: List[Dict[str, Any]]) -> None:
+def test_get_transactions_dictionary_valid_file(transaction1: List[Dict[str, Any]]) -> None:
     """Тестирует функцию get_transactions_dictionary с существующим JSON-файлом, содержащим корректные данные."""
     # Преобразуем список транзакций в JSON-строку
-    json_data = json.dumps(transactions)
+    json_data = json.dumps(transaction1)
 
     # Используем mock_open для имитации открытия файла и чтения корректных данных
     mocked_open = mock_open(read_data=json_data)
@@ -17,15 +17,15 @@ def test_get_transactions_dictionary_valid_file(transactions: List[Dict[str, Any
             mock_exists.return_value = True
             # Вызываем тестируемую функцию и проверяем результат
             result = get_transactions_dictionary("dummy_path.json")
-            assert result == transactions
+            assert result == transaction1
             mocked_open.assert_called_once_with("dummy_path.json")
 
 
 @patch("src.utils.utils_logger")
-def test_get_transactions_dictionary_logs_info(mock_logger: Mock, transactions: List[Dict[str, Any]]) -> None:
+def test_get_transactions_dictionary_logs_info(mock_logger: Mock, transaction1: List[Dict[str, Any]]) -> None:
     """Тестирует, что функция get_transactions_dictionary логирует корректное сообщение при успешном чтении файла."""
     # Преобразуем список транзакций в JSON-строку
-    json_data = json.dumps(transactions)
+    json_data = json.dumps(transaction1)
 
     # Используем mock_open для имитации открытия файла и чтения корректных данных
     mocked_open = mock_open(read_data=json_data)
@@ -34,7 +34,7 @@ def test_get_transactions_dictionary_logs_info(mock_logger: Mock, transactions: 
             mock_exists.return_value = True
             # Вызываем тестируемую функцию и проверяем результат
             result = get_transactions_dictionary("dummy_path.json")
-            assert result == transactions
+            assert result == transaction1
             mock_logger.info.assert_called_once_with("Successfully read file: dummy_path.json")
 
 

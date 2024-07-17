@@ -20,8 +20,3 @@ def mask_account(account_number: str) -> Any:
     masked_number = "**" + account_number[-4:]
     masks_logger.info(f"Masked account number: {masked_number}")
     return masked_number
-
-
-
-#if __name__ == "__main__":
-    #print(mask_card_number('7000 7911 3321 6361'))

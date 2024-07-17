@@ -35,9 +35,5 @@ def log(filename: Any) -> Callable:
 
 
 @log(filename="test_log.txt")
-#@log(filename="")
 def my_function(x: int, y: int) -> int:
     return x + y
-
-
-#my_function(1,2)

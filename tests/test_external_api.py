@@ -1,15 +1,15 @@
 import pytest
 from src.external_api import convert_to_rub, api_key
 
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
 
 from unittest.mock import patch, Mock
 
 
-def test_convert_to_rub_success(transactions: List[Dict[str, Any]]) -> None:
+def test_convert_to_rub_success(transaction1: List[Dict[str, Any]]) -> None:
     """Проверяет, что функция convert_to_rub возвращает правильную сумму транзакции в рублях,
     если запрос к API прошел успешно и был получен корректный ответ."""
-    transaction = transactions[1]  # USD
+    transaction = transaction1[1]  # USD
 
     with patch("requests.get") as mock_get:
         mock_response = Mock()
@@ -26,10 +26,10 @@ def test_convert_to_rub_success(transactions: List[Dict[str, Any]]) -> None:
         )
 
 
-def test_convert_to_rub_failure(transactions: List[Dict[str, Any]]) -> None:
+def test_convert_to_rub_failure(transaction1: List[Dict[str, Any]]) -> None:
     """Проверяет, что функция convert_to_rub выбрасывает исключение ValueError,
     если запрос к API завершился с ошибкой."""
-    transaction = transactions[1]  # USD
+    transaction1 = transaction1[1]  # USD
 
     with patch("requests.get") as mock_get:
         mock_response = Mock()
@@ -37,7 +37,7 @@ def test_convert_to_rub_failure(transactions: List[Dict[str, Any]]) -> None:
         mock_get.return_value = mock_response
 
         with pytest.raises(ValueError):
-            convert_to_rub(transaction)
+            convert_to_rub(transaction1)
 
         mock_get.assert_called_once_with(
             "https://api.apilayer.com/exchangerates_data/convert?from=USD&to=RUB&amount=100.0",
@@ -45,10 +45,10 @@ def test_convert_to_rub_failure(transactions: List[Dict[str, Any]]) -> None:
         )
 
 
-def test_convert_to_rub_invalid_response(transactions: List[Dict[str, Any]]) -> None:
+def test_convert_to_rub_invalid_response(transaction1: List[Dict[str, Any]]) -> None:
     """Проверяет, что функция convert_to_rub выбрасывает исключение ValueError,
     если ответ от API содержит ошибку."""
-    transaction = transactions[1]  # USD
+    transaction = transaction1[1]  # USD
 
     with patch("requests.get") as mock_get:
         mock_response = Mock()
@@ -65,8 +65,8 @@ def test_convert_to_rub_invalid_response(transactions: List[Dict[str, Any]]) -> 
         )
 
 
-def test_convert_to_rub_in_rub(transactions: List[Dict[str, Any]]) -> None:
+def test_convert_to_rub_in_rub(transaction1: List[Dict[str, Any]]) -> None:
     """ Проверяет, что функция convert_to_rub корректно обрабатывает транзакции в рублях."""
-    transaction = transactions[0]  # RUB
+    transaction = transaction1[0]  # RUB
     result = convert_to_rub(transaction)
     assert result == 100000.0
