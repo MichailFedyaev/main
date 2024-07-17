@@ -5,6 +5,7 @@ from src.masks import mask_account, mask_card_number
 
 
 def mask_account_card(string: str) -> Any:
+    """ Функция, которая маскирует номер карту/счёт"""
     if "Счет" in string:
         account = string[5:]
         return "Счет" + " " + mask_account(account)
@@ -14,6 +15,7 @@ def mask_account_card(string: str) -> Any:
 
 
 def get_data(data: str) -> str:
+    """ Функция, которая возвращает дату"""
     time = datetime.strptime(data, format("%Y-%m-%dT%H:%M:%S.%f"))
     return time.strftime("%d.%m.%Y")
 
