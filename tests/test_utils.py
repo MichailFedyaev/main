@@ -6,6 +6,7 @@ import pandas as pd
 
 
 def test_get_transactions_dictionary_valid_file(transaction1: List[Dict[str, Any]]) -> None:
+    """ Тестирует функцию get_transactions_json с существующим JSON-файлом, содержащим корректные данные."""
     # Преобразуем список транзакций в JSON-строку
     json_data = json.dumps(transaction1)
 
@@ -23,6 +24,7 @@ def test_get_transactions_dictionary_valid_file(transaction1: List[Dict[str, Any
 
 @patch("src.utils.utils_logger")
 def test_get_transactions_dictionary_logs_info(mock_logger: Mock, transaction1: List[Dict[str, Any]]) -> None:
+    """ Тестирует, что функция read_transactions_json логирует корректное сообщение при успешном чтении файла."""
     # Преобразуем список транзакций в JSON-строку
     json_data = json.dumps(transaction1)
 
@@ -39,6 +41,7 @@ def test_get_transactions_dictionary_logs_info(mock_logger: Mock, transaction1: 
 
 @patch("src.utils.utils_logger")
 def test_get_transactions_dictionary_invalid_format_logs_warning(mock_logger: Mock) -> None:
+    """ Тестирует функцию get_transactions_json с существующим JSON-файлом, содержащим некорректные данные."""
     # Используем mock_open для имитации открытия файла и чтения некорректных данных
     mocked_open = mock_open(read_data='{"invalid": "data"}')
     with patch("builtins.open", mocked_open):
@@ -52,6 +55,8 @@ def test_get_transactions_dictionary_invalid_format_logs_warning(mock_logger: Mo
 
 
 def test_get_transactions_dictionary_invalid_file() -> None:
+    """Тестирует, что функция get_transactions_json логирует сообщение предупреждение
+     при некорректном формате данных."""
     # Используем mock_open для имитации открытия файла и чтения некорректных данных
     mocked_open = mock_open(read_data='{"invalid": "data"}')
     with patch("builtins.open", mocked_open):
@@ -65,6 +70,7 @@ def test_get_transactions_dictionary_invalid_file() -> None:
 
 
 def test_get_transactions_dictionary_empty_file() -> None:
+    """ Тестирует функцию read_transactions_json с существующим пустым JSON-файлом."""
     # Используем mock_open для имитации открытия пустого файла и чтения данных
     mocked_open = mock_open(read_data="")
     with patch("builtins.open", mocked_open):
@@ -78,6 +84,7 @@ def test_get_transactions_dictionary_empty_file() -> None:
 
 
 def test_get_transactions_dictionary_nonexistent_file() -> None:
+    """Тестирует функцию read_transactions_json с несуществующим JSON-файлом."""
     # Используем patch для имитации os.path.exists и задаем, чтобы она возвращала False
     with patch("os.path.exists") as mock_exists:
         mock_exists.return_value = False
@@ -103,6 +110,8 @@ def test_get_transactions_dictionary_json_decode_error() -> None:
 
 
 def test_get_transactions_dictionary_json_io_error() -> None:
+    """ Тестирует функцию read_transactions_json с существующим JSON-файлом, содержащим
+     некорректный формат JSON-данных."""
     # Используем контекстный менеджер path и аргумент side_effect для имитации открытия файла и генерации исключения
     with patch("builtins.open", side_effect=IOError):
         # Используем patch для имитации os.path.exists и задаем, чтобы она возвращала True
