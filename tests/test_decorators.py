@@ -35,7 +35,8 @@ def test_log_lack_argument(capsys):
         my_function(1)
     except TypeError as e:
         captured = capsys.readouterr()
-        expected_error_message = "my_function error: test_log_lack_argument.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs:(1,), {}"
+        expected_error_message = ("my_function error: test_log_lack_argument.<locals>.my_function() missing 1 required"
+                                  " positional argument: 'y'. Inputs:(1,), {}")
         assert expected_error_message in captured.out
         assert str(e) == "test_log_lack_argument.<locals>.my_function() missing 1 required positional argument: 'y'"
 
@@ -65,6 +66,8 @@ def test_log_different_types_no_argument(capsys):
         my_function()
     except TypeError as e:
         captured = capsys.readouterr()
-        expected_error_message = "my_function error: test_log_different_types_no_argument.<locals>.my_function() missing 2 required positional arguments: 'x' and 'y'. Inputs:(), {}"
+        expected_error_message = ("my_function error: test_log_different_types_no_argument.<locals>.my_function()"
+                                  " missing 2 required positional arguments: 'x' and 'y'. Inputs:(), {}")
         assert expected_error_message in captured.out
-        assert str(e) == "test_log_different_types_no_argument.<locals>.my_function() missing 2 required positional arguments: 'x' and 'y'"
+        assert str(e) == ("test_log_different_types_no_argument.<locals>.my_function() missing"
+                          " 2 required positional arguments: 'x' and 'y'")
