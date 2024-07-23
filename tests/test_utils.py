@@ -132,10 +132,10 @@ def test_get_transactions_csv_valid_file(mock_logger: Mock) -> None:
     with patch("pandas.read_csv", return_value=data) as mock_read_csv:
         with patch("os.path.exists", return_value=True):
             # Вызываем тестируемую функцию и проверяем результат
-            result = get_transactions_csv("dummy_path.csv")
+            result = get_transactions_csv("dummy_path.csv", delimiter=';')
             expected_result = data.to_dict(orient="records")
             assert result == expected_result
-            mock_read_csv.assert_called_once_with("dummy_path.csv")
+            mock_read_csv.assert_called_once_with("dummy_path.csv", delimiter=';')
             mock_logger.info.assert_called_once_with("Successfully read CSV file: dummy_path.csv")
 
 
@@ -147,7 +147,7 @@ def test_get_transactions_csv_empty_file(mock_logger: Mock) -> None:
         with patch("os.path.exists") as mock_exists:
             mock_exists.return_value = True
             # Вызываем тестируемую функцию и проверяем результат
-            result = get_transactions_csv("dummy_path.csv")
+            result = get_transactions_csv("dummy_path.csv", delimiter=';')
             assert result == []
             mock_logger.warning.assert_called_once_with("File is empty or not a DataFrame: dummy_path.csv")
 
@@ -165,7 +165,7 @@ def test_get_transactions_csv_parse_error(mock_logger: Mock) -> None:
             # Используем контекстный менеджер и аргумент side_effect для имитации чтения и генерации исключения
             with patch("pandas.read_csv", side_effect=pd.errors.ParserError("Mock ParserError")):
                 # Вызываем тестируемую функцию и проверяем результат
-                result = get_transactions_csv("dummy_path.csv")
+                result = get_transactions_csv("dummy_path.csv", delimiter=';')
                 assert result == []
                 mock_logger.error.assert_called_once_with("ParserError: Failed to parse file: dummy_path.csv")
 

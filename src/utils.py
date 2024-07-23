@@ -29,14 +29,14 @@ def get_transactions_dictionary(file_path: str) -> List[Dict[str, Any]]:
         return []
 
 
-def get_transactions_csv(file_path: str) -> List[Dict[Hashable, Any]]:
+def get_transactions_csv(file_path: str, delimiter: str = ';') -> List[Dict[Hashable, Any]]:
     """ Функция принимает путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях."""
     if not os.path.exists(file_path):
         utils_logger.warning(f"File does not exist: {file_path}")
         return []
 
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, delimiter=delimiter,)
         if df.empty or not isinstance(df, pd.DataFrame):
             utils_logger.warning(f"File is empty or not a DataFrame: {file_path}")
             return []
