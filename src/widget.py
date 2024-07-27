@@ -4,22 +4,27 @@ from typing import Any
 from src.masks import mask_account, mask_card_number
 
 
-def mask_account_card(string: str) -> Any:
+def mask_account_card(card_or_account_inform: str) -> str:
     """ Функция, которая маскирует номер карту/счёт"""
-    if "Счет" in string:
-        account = string[5:]
-        return "Счет" + " " + mask_account(account)
+    if card_or_account_inform is None:
+        return ""
+    try:
+        # Получение типа и номера карты/счета
+        card_or_account_type, card_or_account_num = card_or_account_inform.rsplit(" ", 1)
+    except ValueError:
+        return ""
+
+    if card_or_account_type.lower() in ("счет", "счёт"):
+        return f"{card_or_account_type} {mask_account(card_or_account_num)}"
     else:
-        card_number = "".join(string[-16:].split())
-        return string[:-16] + mask_card_number(card_number)
+        return f"{card_or_account_type} {mask_card_number(card_or_account_num)}"
 
 
-def get_data(data: str) -> str:
-    """ Функция, которая возвращает дату"""
-    time = datetime.strptime(data, format("%Y-%m-%dT%H:%M:%S.%f"))
-    return time.strftime("%d.%m.%Y")
+def get_data(date_of_transaction: str) -> str:
+    """Функция возвращает дату"""
+    # Получение даты и времени
+    date, _ = date_of_transaction.split("T")
+    # Получение списка, элементами которого являются yy, mm, dd
+    date_list = date.split("-")
 
-
-print(mask_account_card("Счет 73654108430135874305"))
-print(mask_account_card("MasterCard 7158300734726759"))
-print(get_data("2018-07-11T02:26:18.671407"))
+    return f"{date_list[2]}.{date_list[1]}.{date_list[0]}"

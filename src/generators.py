@@ -1,4 +1,4 @@
-from typing import Dict, Generator, List
+from typing import Dict, Generator, List, Any, Iterator, Hashable
 
 transactions: List[Dict] = [
     {
@@ -49,16 +49,21 @@ transactions: List[Dict] = [
 ]
 
 
-def filter_by_currency(transaction: List[Dict], code_input: str) -> Generator[Dict, None, None]:
-    """Генератор - принимает список словарей и возвращает операции, в которых указана заданная валюта."""
-    for key in transaction:
-        if key["operationAmount"]["currency"]["code"] == code_input:
-            yield key
+def filter_by_currency(transactions: list[dict], code: str) -> Iterator[dict]:
+    """Возвращает итератор, который выдает по очереди операции, в которых указана заданная валюта."""
 
+    def has_currency_code(transaction: Dict[str, Any], code: str) -> bool:
+        """Проверяет, есть ли в транзакции заданный код валюты."""
+        operation_amount = transaction.get("operationAmount")
+        if operation_amount:
+            currency = operation_amount.get("currency")
+            if currency and currency.get("code") == code:
+                return True
+        if transaction.get("currency_code") == code:
+            return True
+        return False
 
-usd_transaction = filter_by_currency(transactions, "USD")
-for transacts in range(3):
-    print(next(usd_transaction))
+    return (transaction for transaction in transactions if has_currency_code(transaction, code))
 
 
 def transaction_descriptions(transaction: List[Dict]) -> Generator[str, None, None]:
@@ -67,17 +72,8 @@ def transaction_descriptions(transaction: List[Dict]) -> Generator[str, None, No
         yield i["description"]
 
 
-info_description = transaction_descriptions(transactions)
-for descript in range(5):
-    print(next(info_description))
-
-
 def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
     """Генерирует номера карт в формате XXXX XXXX XXXX XXXX."""
     for number in range(start, end + 1):
         num_str = f"{number:016d}"
         yield " ".join([num_str[i:i + 4] for i in range(0, len(num_str), 4)])
-
-
-for card_number in card_number_generator(1, 5):
-    print(card_number)
