@@ -1,4 +1,6 @@
-from typing import Any
+from typing import Any, Dict, List
+import re
+from collections import Counter
 
 inform_state = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -8,16 +10,9 @@ inform_state = [
 ]
 
 
-def filter_by_state(inform_states: list[dict[str, Any]], states_id: str = "EXECUTED") -> list[dict[str, Any]]:
-    """Функция фильтрации операций по ключу state"""
-    list_stat = []
-    for key in inform_states:
-        if key.get("state") == states_id:
-            list_stat.append(key)
-    return list_stat
-
-
-print(filter_by_state(inform_state))
+def filter_by_state(records: list, state: str = "EXECUTED") -> list:
+    """Фильтрует операции по заданному состоянию."""
+    return [record for record in records if state == record.get("state")]
 
 
 def sort_by_date(inform_states: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
@@ -26,4 +21,20 @@ def sort_by_date(inform_states: list[dict[str, Any]], reverse: bool = True) -> l
     return sorted_inform_state
 
 
-print(sort_by_date(inform_state))
+def search_transactions(transactions: List[Dict[str, Any]], search_string: str) -> List[Dict[str, Any]]:
+    """Ищет транзакции, в описании которых содержится заданная строка поиска."""
+    pattern = re.compile(re.escape(search_string), re.IGNORECASE)
+    return [transaction for transaction in transactions if pattern.search(transaction.get("description", ""))]
+
+
+def count_transactions_by_category(transactions: List[Dict[str, Any]], categories: List[str]) -> Dict[str, int]:
+    """Подсчитывает количество транзакций для каждой категории на основе описаний транзакций."""
+    categories_lower = [category.lower() for category in categories]
+    categories_used = []
+    for transaction in transactions:
+        description = transaction.get("description", "").lower()
+        for category in categories_lower:
+            if category in description:
+                categories_used.append(category)
+    # Преобразование категорий обратно в исходный регистр и возвращение результата
+    return Counter([categories[categories_lower.index(category)] for category in categories_used])
