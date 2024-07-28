@@ -1,4 +1,5 @@
 from typing import Any
+
 from src.logger_setup import setup_logger
 
 # Создание и получение именованного логгера

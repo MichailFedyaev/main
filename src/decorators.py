@@ -29,6 +29,7 @@ def log(filename: Any) -> Callable:
                     print(f"Error writing to log file: {e}")
             print(log_message)
             return result
+
         return wrapper
 
     return decorator

@@ -1,11 +1,8 @@
-from datetime import datetime
-from typing import Any
-
 from src.masks import mask_account, mask_card_number
 
 
 def mask_account_card(card_or_account_inform: str) -> str:
-    """ Функция, которая маскирует номер карту/счёт"""
+    """Функция, которая маскирует номер карту/счёт"""
     if card_or_account_inform is None:
         return ""
     try:

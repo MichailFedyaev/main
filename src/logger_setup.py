@@ -19,7 +19,7 @@ def setup_logger(name: str) -> logging.Logger:
     file_handler.setLevel(logging.DEBUG)
 
     # Создание форматера с параметрами: дата/время, имя логера, уровень, сообщение
-    formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(filename)s - %(funcName)s - %(levelname)s - %(message)s")
     file_handler.setFormatter(formatter)
 
     # Добавление обработчика к логгеру

@@ -1,4 +1,4 @@
-from typing import Dict, Generator, List, Any, Iterator, Hashable
+from typing import Any, Dict, Generator, Iterator, List
 
 transactions: List[Dict] = [
     {
@@ -76,4 +76,4 @@ def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
     """Генерирует номера карт в формате XXXX XXXX XXXX XXXX."""
     for number in range(start, end + 1):
         num_str = f"{number:016d}"
-        yield " ".join([num_str[i:i + 4] for i in range(0, len(num_str), 4)])
+        yield " ".join([num_str[i : i + 4] for i in range(0, len(num_str), 4)])
