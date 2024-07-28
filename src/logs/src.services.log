@@ -1,0 +1,6 @@
+2024-07-28 22:53:52,372 - src.services - services.py - investment_bank - INFO - Start
+2024-07-28 22:53:52,372 - src.services - services.py - investment_bank - INFO - Creating a list of filtered transactions
+2024-07-28 22:53:52,373 - src.services - services.py - investment_bank - INFO - Filtering transactions by date and adding their amount to the list of filtered transactions
+2024-07-28 22:53:52,405 - src.services - services.py - investment_bank - INFO - Calculation of the remaining amount for the investment bank
+2024-07-28 22:53:52,406 - src.services - services.py - investment_bank - INFO - Creating a json file with the amount for the investment bank
+2024-07-28 22:53:52,406 - src.services - services.py - investment_bank - INFO - Stop

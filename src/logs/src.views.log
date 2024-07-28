@@ -1,0 +1,9 @@
+2024-07-28 22:53:50,608 - src.views - views.py - main_page - INFO - Start
+2024-07-28 22:53:50,608 - src.views - views.py - main_page - INFO - Converting an Excel file to a dictionary list
+2024-07-28 22:53:51,340 - src.views - views.py - main_page - INFO - Receiving a greeting
+2024-07-28 22:53:51,341 - src.views - views.py - main_page - INFO - Getting information about the card
+2024-07-28 22:53:51,347 - src.views - views.py - main_page - INFO - Getting the best deals
+2024-07-28 22:53:51,348 - src.views - views.py - main_page - INFO - Getting currency exchange rates
+2024-07-28 22:53:51,646 - src.views - views.py - main_page - INFO - Creating a dictionary of dictionaries
+2024-07-28 22:53:51,647 - src.views - views.py - main_page - INFO - Writing information to a json file
+2024-07-28 22:53:51,647 - src.views - views.py - main_page - INFO - Stop

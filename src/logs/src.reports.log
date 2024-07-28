@@ -1,0 +1,10 @@
+2024-07-28 22:53:52,425 - src.reports - reports.py - spending_by_category - INFO - Start
+2024-07-28 22:53:52,425 - src.reports - reports.py - spending_by_category - INFO - Create a filtered list by date for the last 3 months using another function
+2024-07-28 22:53:52,425 - src.reports - reports.py - filtering_by_date - INFO - Converting DF to Dictionary
+2024-07-28 22:53:52,427 - src.reports - reports.py - filtering_by_date - INFO - The creation period is within 90 days
+2024-07-28 22:53:52,427 - src.reports - reports.py - filtering_by_date - INFO - Filtering of transactions for 3 months
+2024-07-28 22:53:52,427 - src.reports - reports.py - filtering_by_date - INFO - Converting data back to DF
+2024-07-28 22:53:52,428 - src.reports - reports.py - filtering_by_date - INFO - Returning DF to the main function
+2024-07-28 22:53:52,428 - src.reports - reports.py - spending_by_category - INFO - Filtering transactions by category
+2024-07-28 22:53:52,432 - src.reports - reports.py - spending_by_category - INFO - Returning filtered DF
+2024-07-28 22:53:52,432 - src.reports - reports.py - spending_by_category - INFO - Stop
