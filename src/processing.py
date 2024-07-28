@@ -1,6 +1,6 @@
-from typing import Any, Dict, List
 import re
 from collections import Counter
+from typing import Any, Dict, List
 
 inform_state = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
